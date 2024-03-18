@@ -2,6 +2,12 @@ package com.thoughtworks.kotlin_basic.practice
 
 class Solution {
     fun transform(index: Int, size: Int): List<String> {
-        return listOf((index+64).toChar().toString())
+        return (index..<index + size).map {
+            it.toASCIICode()
+        }
     }
+}
+
+fun Int.toASCIICode(): String {
+    return (this + 64).toChar().toString()
 }

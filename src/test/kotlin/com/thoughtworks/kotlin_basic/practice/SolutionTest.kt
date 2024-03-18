@@ -17,4 +17,10 @@ class SolutionTest {
         assertContentEquals(listOf("X"), solution.transform(24, 1))
         assertContentEquals(listOf("Z"), solution.transform(26, 1))
     }
+
+    @Test
+    fun `should get x letter when input any sequence of 1-26 and size is x`() {
+        assertContentEquals(listOf("B", "C", "D"), solution.transform(2, 3))
+        assertContentEquals(listOf("X", "Y"), solution.transform(24, 2))
+    }
 }
