@@ -16,6 +16,12 @@ class SolutionTest {
         }
     }
 
+    @ParameterizedTest
+    @MethodSource("testCaseProvider")
+    fun abstractTest(case: Pair<Pair<Int, Int>, List<String>>) {
+        assertContentEquals(case.second, solution.transform(case.first.first, case.first.second))
+    }
+
     companion object {
         @JvmStatic
         fun testCaseProvider(): List<Pair<Pair<Int, Int>, List<String>>> {
@@ -48,11 +54,4 @@ class SolutionTest {
             )
         }
     }
-
-    @ParameterizedTest
-    @MethodSource("testCaseProvider")
-    fun abstractTest(case: Pair<Pair<Int, Int>, List<String>>) {
-        assertContentEquals(case.second, solution.transform(case.first.first, case.first.second))
-    }
-
 }
