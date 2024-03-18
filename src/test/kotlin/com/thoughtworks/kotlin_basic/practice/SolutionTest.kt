@@ -7,6 +7,7 @@ import kotlin.test.assertFailsWith
 
 class SolutionTest {
     val solution = Solution()
+
     @Test
     fun `should get the corresponding letter A-Z when input any sequence of 1-26 and the size is 1`() {
         assertContentEquals(listOf("A"), solution.transform(1, 1))
@@ -25,8 +26,8 @@ class SolutionTest {
     @Test
     fun `should throw exception when invalid argument`() {
         assertFailsWith<IllegalArgumentException> {
-            solution.transform(18279,1)
-            solution.transform(18278,2)
+            solution.transform(18279, 1)
+            solution.transform(18278, 2)
             solution.transform(1, 18278)
             solution.transform(0, 1)
             solution.transform(-1, 0)
@@ -34,4 +35,13 @@ class SolutionTest {
         }
     }
 
+    @Test
+    fun `should support A to ZZZ when input any sequence`() {
+        assertContentEquals(listOf("AA"), solution.transform(27, 1))
+        assertContentEquals(listOf("AB"), solution.transform(28, 1))
+        assertContentEquals(listOf("Z", "AA", "AB"), solution.transform(26, 3))
+        assertContentEquals(listOf("ZZZ"), solution.transform(18278, 1))
+        assertContentEquals(listOf("ZZY", "ZZZ"), solution.transform(18277, 2))
+        assertContentEquals(listOf("ZBZ"), solution.transform(26*26*26+26*2+26, 1))
+    }
 }
