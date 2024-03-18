@@ -1,5 +1,6 @@
 package com.thoughtworks.kotlin_basic.practice
 
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 import kotlin.test.Test
@@ -9,15 +10,11 @@ import kotlin.test.assertFailsWith
 class SolutionTest {
     val solution = Solution()
 
-    @Test
-    fun `should throw exception when invalid argument`() {
+    @ParameterizedTest
+    @MethodSource("edgeCaseProvider")
+    fun illegalTest(case: Pair<Int, Int>) {
         assertFailsWith<IllegalArgumentException> {
-            solution.transform(18279, 1)
-            solution.transform(18278, 2)
-            solution.transform(1, 18278)
-            solution.transform(0, 1)
-            solution.transform(-1, 0)
-            solution.transform(3, -20)
+            solution.transform(case.first, case.second)
         }
     }
 
@@ -38,6 +35,18 @@ class SolutionTest {
                 Pair(18277, 2) to listOf("ZZY", "ZZZ"),
                 Pair(26 * 26 * 26 + 26 * 2 + 26, 1) to listOf("ZBZ"),
                 Pair(30, 11) to listOf("AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK", "AL", "AM", "AN")
+            )
+        }
+
+        @JvmStatic
+        fun edgeCaseProvider(): List<Pair<Int, Int>> {
+            return listOf(
+                18279 to 1,
+                18278 to 2,
+                0 to 1,
+                -1 to 1,
+                1 to 0,
+                3 to -20,
             )
         }
     }
