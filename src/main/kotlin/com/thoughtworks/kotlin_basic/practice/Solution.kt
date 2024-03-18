@@ -4,13 +4,12 @@ class Solution {
     fun transform(index: Int, size: Int): List<String> {
         if (isInValidInput(index, size)) throw IllegalArgumentException()
         return (index..<index + size).map {
-            var current = it - 1
+            var current = it
             var result = ""
-            while (current >= 0) {
-                val nextCurrent = current / 26
-                val reminder = current % 26
+            while (current > 0) {
+                val reminder = (current - 1) % 26
                 result = reminder.toASCIICode() + result
-                current = nextCurrent - 1
+                current = (current - 1) / 26
             }
             result
         }
