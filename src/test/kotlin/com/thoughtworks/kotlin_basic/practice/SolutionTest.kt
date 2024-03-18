@@ -23,11 +23,15 @@ class SolutionTest {
     }
 
     @Test
-    fun `should throw exception when index plus size greater than 18278`() {
+    fun `should throw exception when invalid argument`() {
         assertFailsWith<IllegalArgumentException> {
             solution.transform(18279,1)
             solution.transform(18278,2)
             solution.transform(1, 18278)
+            solution.transform(0, 1)
+            solution.transform(-1, 0)
+            solution.transform(3, -20)
         }
     }
+
 }
